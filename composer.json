@@ -1,0 +1,25 @@
+{
+  "name": "sepikas/sw-commander",
+  "description": "Connect to devices with telnet or ssh and send commands list",
+  "license": "MIT",
+  "keywords": ["telnet", "ssh", "switch", "device"],
+  "authors": [
+    {
+      "name": "Antanas Šepikas",
+      "email": "sepikas.antanas@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.4.0",
+    "ext-ssh2": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.0.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Sepikas\\SwCommander\\": "src/"
+    }
+  }
+}
