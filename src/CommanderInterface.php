@@ -14,7 +14,7 @@ interface CommanderInterface
      * @param int $port
      * @return CommanderInterface
      */
-    public function connect($server, $port);
+    public function connect($server, $port = null);
 
     /**
      * @param string $username
