@@ -11,10 +11,11 @@ interface CommanderInterface
      * Instantiate connection to remote device
      *
      * @param string $server
+     * @param int $timeout
      * @param int $port
      * @return CommanderInterface
      */
-    public function connect($server, $port = null);
+    public function connect($server, $timeout = null, $port = null);
 
     /**
      * @param string $username

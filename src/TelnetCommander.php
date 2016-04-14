@@ -56,9 +56,14 @@ class TelnetCommander implements CommanderInterface
         $this->debug = $debug;
     }
 
-    public function connect($server, $port = 23)
+    public function connect($server, $timeout = null, $port = 23)
     {
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
+
+        if ($timeout) {
+            socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => $timeout, 'usec' => 0));
+            socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => $timeout, 'usec' => 0));
+        }
 
         if (false === $this->socket) {
             throw new \Exception("Could not execute socket_create(): " . socket_strerror(socket_last_error()));

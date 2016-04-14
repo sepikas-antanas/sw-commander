@@ -16,7 +16,7 @@ class TelnetCommanderTest extends PHPUnit_Framework_TestCase {
     public function testCommander1()
     {
         $commander = new TelnetCommander();
-        $commander->connect($this->host)
+        $commander->connect($this->host, 60)
             ->setAuthentication($this->username, $this->password)
             ->setPrompts([
                 'username' => $this->usernamePrompt,
@@ -39,7 +39,7 @@ class TelnetCommanderTest extends PHPUnit_Framework_TestCase {
     public function testCommander2()
     {
         $commander = new TelnetCommander();
-        $commander->connect($this->host)
+        $commander->connect($this->host, 60)
             ->setAuthentication($this->username, $this->password)
             ->setPrompts([
                 'username' => $this->usernamePrompt,
@@ -98,7 +98,7 @@ class TelnetCommanderTest extends PHPUnit_Framework_TestCase {
     public function testCommander3()
     {
         $commander = new TelnetCommander();
-        $commander->connect($this->host)
+        $commander->connect($this->host, 60)
             ->setAuthentication($this->username, $this->password)
             ->setPrompts([
                 'username' => $this->usernamePrompt,
@@ -126,7 +126,7 @@ class TelnetCommanderTest extends PHPUnit_Framework_TestCase {
     public function testCommander4()
     {
         $commander = new TelnetCommander();
-        $commander->connect($this->host)
+        $commander->connect($this->host, 60)
             ->setAuthentication($this->username, $this->password)
             ->setPrompts([
                 'username' => $this->usernamePrompt,
