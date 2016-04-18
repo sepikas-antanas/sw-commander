@@ -172,6 +172,7 @@ class TelnetCommander implements CommanderInterface
 
     public function disconnect()
     {
+        /*
         if (null !== $this->socket && @socket_read($this->socket, $this->length)) {
             if (false === @socket_shutdown($this->socket)) {
                 throw new \Exception("Could not shutdown socket socket_shutdown(): " . socket_strerror(socket_last_error()));
@@ -181,7 +182,11 @@ class TelnetCommander implements CommanderInterface
         if (null !== $this->socket) {
             @socket_close($this->socket);
         }
-
+        */
+        //fail save socket shutdown
+        @socket_write($this->socket, 'exit'.PHP_EOL, strlen('exit'.PHP_EOL));
+        @socket_shutdown($this->socket);
+        @socket_close($this->socket);
         $this->socket = null;
 
         return $this;
