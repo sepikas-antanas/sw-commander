@@ -45,24 +45,30 @@ class TelnetCommander implements CommanderInterface
     private $socket;
 
     /**
+     * @var int
+     */
+    private $timeout;
+
+    /**
      * @var bool
      */
     private $debug;
 
-    public function __construct($length = null, $pause = null, $debug = false)
+    public function __construct($length = null, $pause = null, $timeout = null, $debug = false)
     {
         $this->length = $length ? $length : $this->length;
         $this->pause = $pause ? $pause : $this->pause;
+        $this->timeout = $timeout;
         $this->debug = $debug;
     }
 
-    public function connect($server, $timeout = null, $port = 23)
+    public function connect($server, $port = 23)
     {
         $this->socket = socket_create(AF_INET, SOCK_STREAM, SOL_TCP);
 
-        if ($timeout) {
-            socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => $timeout, 'usec' => 0));
-            socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => $timeout, 'usec' => 0));
+        if ($this->timeout) {
+            socket_set_option($this->socket, SOL_SOCKET, SO_RCVTIMEO, array('sec' => $this->timeout, 'usec' => 0));
+            socket_set_option($this->socket, SOL_SOCKET, SO_SNDTIMEO, array('sec' => $this->timeout, 'usec' => 0));
         }
 
         if (false === $this->socket) {

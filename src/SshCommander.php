@@ -50,21 +50,27 @@ class SshCommander implements CommanderInterface
     private $stream;
 
     /**
+     * @var int
+     */
+    private $timeout;
+
+    /**
      * @var bool
      */
     private $debug;
 
-    public function __construct($length = null, $pause = null, $debug = false)
+    public function __construct($length = null, $pause = null, $timeout = null, $debug = false)
     {
         $this->length = $length ? $length : $this->length;
         $this->pause = $pause ? $pause : $this->pause;
+        $this->timeout = $timeout;
         $this->debug = $debug;
     }
 
-    public function connect($server, $timeout = null, $port = 22)
+    public function connect($server, $port = 22)
     {
-        if ($timeout) {
-            ini_set("default_socket_timeout", $timeout);
+        if ($this->timeout) {
+            ini_set("default_socket_timeout", $this->timeout);
         }
 
         $this->socket = ssh2_connect($server, $port);
